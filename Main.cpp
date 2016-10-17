@@ -1,4 +1,6 @@
 #include "Rotor.hpp"
+#include "Plugboard.hpp"
+#include "Enigma.hpp"
 #include <stdexcept>
 #include <fstream>
 
@@ -18,15 +20,13 @@ vector<int> parseFile(char* filename)
 
 int main(int argc, char **argv)
 {
-    int length = sizeof(argv)/sizeof(argv[0]);
-    vector<int> rotors[length];
-    for(int i = 1; i < length + 1; i++)
+    vector<Rotor> rotors;
+    for(int i = 1; i < argc - 1; i++)
     {
-        rotors[i - 1] = parseFile(argv[i]);
+        rotors.push_back(Rotor(parseFile(argv[i])));
     }
-    for(int i = 0; i < length; i++)
-    {
-        Rotor r (rotors[i]);
-    }
+    Plugboard plugboard (parseFile(argv[argc - 1]));
+    Enigma enigma (rotors, plugboard);
+    enigma.encode(1);
     return 0;
 }

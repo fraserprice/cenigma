@@ -2,17 +2,20 @@
 #define ROTOR_H
 
 #include "Mapping.hpp"
-#include <iostream>
+
+using namespace std;
 
 class Rotor : public Mapping
 {
     public:
 
         Rotor(vector<int>);
-    
+        int getInverse(int);
+
     private:
-        
-        void setMapping(vector<int>);
+
+        map<int, int> inverseMapping;
+    
 };
 
 #endif

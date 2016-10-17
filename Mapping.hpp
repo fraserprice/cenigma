@@ -8,12 +8,14 @@ using namespace std;
 
 class Mapping
 {
+    public:
+
+        int get(int);
+        int getInverse(int);
+
     protected:
 
         map<int, int> mapping;
-        map<int, int> inverseMapping;
-
-        int get(int, bool);
 
 };
 

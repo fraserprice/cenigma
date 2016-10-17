@@ -1,7 +1,11 @@
 #include "Mapping.hpp"
 
-int Mapping::get(int in, bool inverse)
+int Mapping::get(int in)
 {
-    return inverse ? mapping[in] : inverseMapping[in];
+    return mapping[in];
 }
 
+int Mapping::getInverse(int in)
+{
+    return mapping[in];
+}
