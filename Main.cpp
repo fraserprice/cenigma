@@ -11,6 +11,10 @@ using namespace std;
 vector<int> parseFile(char* filename)
 {
     ifstream infile(filename);
+    if(infile.fail())
+    {
+        throw invalid_argument("Filed to open file; please check paths are correct");
+    }
     int n;
     vector<int> nums;
     while(infile >> n)
@@ -22,7 +26,10 @@ vector<int> parseFile(char* filename)
 
 int main(int argc, char **argv)
 {
-
+    if(argc == 1)
+    {
+        throw invalid_argument("You must input a pulgboard!");
+    }
     vector<Rotor> rotors;
     for(int i = 1; i < argc - 1; i++)
     {

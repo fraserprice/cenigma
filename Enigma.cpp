@@ -13,22 +13,28 @@ Enigma::Enigma(const vector<Rotor> &rotors, const Plugboard &plugboard)
 
 int Enigma::encode(int n)
 {
+    cout << "Start: " << n << endl;
     n = plugboard.get(n);
+    cout << "Plugboard: " << n << endl;
     if(rotors.size() > 0)
     {
         for(vector<Rotor>::iterator it = rotors.begin(); it != rotors.end(); it++) {
             n = it -> get(n);
+            cout << "Get: " << n << endl;
         }
     }
     n = reflector.get(n);
+    cout << "Reflect: " << n << endl;
     if(rotors.size() > 0)
     {
         for (vector<Rotor>::reverse_iterator it = rotors.rbegin(); 
             it != rotors.rend(); it++ ) { 
             n = it -> getInverse(n);
+            cout << "Inverse: " << n << endl;
         } 
     }
     n = plugboard.get(n);
+    cout << "Plugboard: " << n << endl;
     if(rotors.size() > 0)
     {
         rotate();
