@@ -11,9 +11,11 @@ class Rotor : public Mapping
 
         Rotor(vector<int>);
         int getInverse(int);
+        void rotate();
 
     private:
 
+        void setMapping(vector<int>);
         map<int, int> inverseMapping;
     
 };

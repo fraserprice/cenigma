@@ -1,8 +1,19 @@
 #include "Rotor.hpp"
+#include <iostream>
 
 using namespace std;
 
 Rotor::Rotor(vector<int> vectorMapping)
+{
+    setMapping(vectorMapping);
+}
+
+int Rotor::getInverse(int in)
+{
+   return inverseMapping[in]; 
+}
+
+void Rotor::setMapping(vector<int> vectorMapping)
 {
     for(int i = 0; i < 26; i++)
     {
@@ -12,9 +23,16 @@ Rotor::Rotor(vector<int> vectorMapping)
     {
         inverseMapping[i->second] = i->first;
     }
+    
 }
 
-int Rotor::getInverse(int in)
+void Rotor::rotate()
 {
-   return inverseMapping[in]; 
+    vector<int> vectorMapping;
+    for(int i = 1; i < 26; i++)
+    {
+        vectorMapping.push_back(mapping[i]);
+    }
+    vectorMapping.push_back(mapping[0]);
+    setMapping(vectorMapping);
 }

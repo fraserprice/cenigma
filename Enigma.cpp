@@ -14,25 +14,31 @@ Enigma::Enigma(const vector<Rotor> &rotors, const Plugboard &plugboard)
 int Enigma::encode(int n)
 {
     n = plugboard.get(n);
-    cout << "Plug" << n << endl;
-    for(vector<Rotor>::iterator it = rotors.begin(); it != rotors.end(); it++) {
-        n = it -> get(n);
-        cout << "Rotor" << n << endl;
+    if(rotors.size() > 0)
+    {
+        for(vector<Rotor>::iterator it = rotors.begin(); it != rotors.end(); it++) {
+            n = it -> get(n);
+        }
     }
     n = reflector.get(n);
-    for (vector<Rotor>::reverse_iterator it = rotors.rbegin(); 
+    if(rotors.size() > 0)
+    {
+        for (vector<Rotor>::reverse_iterator it = rotors.rbegin(); 
             it != rotors.rend(); it++ ) { 
-        n = it -> getInverse(n);
-        cout << "Rotor" << n << endl;
-    } 
+            n = it -> getInverse(n);
+        } 
+    }
     n = plugboard.get(n);
-    cout << "Plug" << n << endl;
+    if(rotors.size() > 0)
+    {
+        rotate();
+    }
     count++;
-    rotate();
     return n;
 }
 
 void Enigma::rotate()
 {
-    
+    int rotor = (count / 26) % rotors.size();
+    rotors.at(rotor).rotate();
 }
