@@ -15,6 +15,7 @@ class Rotor : public Mapping
 
     private:
 
+        int count;
         void setMapping(vector<int>);
         map<int, int> inverseMapping;
     
