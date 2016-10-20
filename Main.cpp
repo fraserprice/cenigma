@@ -37,11 +37,10 @@ int main(int argc, char **argv)
     }
     Plugboard plugboard (parseFile(argv[argc - 1]));
     Enigma enigma (rotors, plugboard);
-    if(true)
+    string input;
+    while (getline(cin, input))
     {
-        string input;
         vector<int> toEncode;
-        getline(cin, input);
         for(string::size_type i = 0; i < input.size(); ++i) {
             if(isupper(input[i]))
             {
@@ -51,7 +50,6 @@ int main(int argc, char **argv)
                 throw invalid_argument("Input must either be upper case letter or whitespace");
             }
         }
-        cout << endl;
     }
     return 0;
 }
